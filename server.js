@@ -12,7 +12,7 @@ app.get('/',(req,res) => {
 });
 
 //PORT
-const port = 8080
+const PORT = 8080
 
 //run listen
 app.listen(PORT,() =>{
