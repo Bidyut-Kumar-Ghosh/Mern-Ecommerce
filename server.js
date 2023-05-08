@@ -1,6 +1,5 @@
-const express = require('express');
-const res = require('express/lib/response');
-const colors =require('colors')
+import express from 'express';
+import colors from 'colors';
 
 //rest object
 const app = express();
