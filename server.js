@@ -1,5 +1,6 @@
 const express = require('express');
-const res = require('express/lib/response')
+const res = require('express/lib/response');
+const colors =require('colors')
 
 //rest object
 const app = express();
@@ -16,5 +17,5 @@ const PORT = 8080
 
 //run listen
 app.listen(PORT,() =>{
-    console.log(`server running on ${PORT}`);
+    console.log(`server running on ${PORT}`.bgCyan.white);
 })
