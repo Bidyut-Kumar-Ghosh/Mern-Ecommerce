@@ -16,5 +16,3 @@ const PORT = 8080
 app.listen(PORT,() =>{
     console.log(`server running on ${PORT}`.bgCyan.white);
 })
-
-//bidyut
