@@ -23,7 +23,7 @@ app.use(morgan('dev'))
 app.use("/api/v1/auth", authRoutes);
 
 //rest api
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
     res.send("<h1>Welcome to ecommmerce app</h1>")
 });
 
@@ -31,9 +31,10 @@ app.get('/',(req,res) => {
 const PORT = process.env.PORT || 8080;
 
 //run listen
-app.listen(PORT,() => {
+app.listen(PORT, () => {
     console.log(`server running ${process.env.DEV_MODE} on ${PORT}`.bgCyan.white);
 })
 
 
 //Hello
+//How Are You
