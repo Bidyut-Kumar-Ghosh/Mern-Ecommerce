@@ -9,6 +9,7 @@ const Footer = () => {
             </h1>
             <p className='text-center mt-3'>
                 <Link to="/about">About</Link>
+                {/* <Link to="/forget">Forget</Link> */}
                 <Link to="/Contact">Contact us</Link>
                 <Link to="/Policy">Privacy Policy</Link>
             </p>
