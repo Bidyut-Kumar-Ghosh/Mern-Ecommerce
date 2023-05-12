@@ -26,12 +26,12 @@ const Register = () => {
                         <div className="submit-btn-signup">
                             <input type="submit" id="sign-in" className="submit-button" defaultValue="SIGN IN" />
                         </div>
-                        <p style={{ textAlign: 'center', color: '#858585', fontSize: 15 }}>Sign in with social account</p>
+                        {/* <p style={{ textAlign: 'center', color: '#858585', fontSize: 15 }}>Sign in with social account</p>
                         <div className="signin-socail-links">
                             <Link href="#"><img className='bb' src="images/facebook.png" alt width="30px" /></Link>
                             <Link href="#"><img src="images/footer3.png" alt width="30px" /></Link>
                             <Link href="#"><img src="images/footer4.png" alt width="30px" /></Link>
-                        </div>
+                        </div> */}
                     </form>
                     <form id="form1">
                         <div className="form-input">
@@ -56,12 +56,12 @@ const Register = () => {
                         <div className="submit-btn-signup">
                             <input type="submit" id="sign-up" className="submit-button" defaultValue="SIGN UP" />
                         </div>
-                        <p style={{ textAlign: 'center', color: '#858585', fontSize: 15 }}>Sign in with social account</p>
+                        {/* <p style={{ textAlign: 'center', color: '#858585', fontSize: 15 }}>Sign in with social account</p>
                         <div className="signin-socail-links">
                             <a href="#"><img src="images/facebook.png" alt width="30px" /></a>
                             <a href="#"><img src="images/footer3.png" alt width="30px" /></a>
                             <a href="#"><img src="images/footer4.png" alt width="30px" /></a>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </section>

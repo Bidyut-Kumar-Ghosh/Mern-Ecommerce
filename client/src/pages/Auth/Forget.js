@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../components/Layout/Layout'
-import { BiMailSend, BiPhoneCall, BiSupport } from "react-icons/bi";
+// import { BiMailSend, BiPhoneCall, BiSupport } from "react-icons/bi";
 
 const forget = () => {
     return (
@@ -18,12 +18,12 @@ const forget = () => {
                         <div className="submit-btn-signup">
                             <input type="submit" id="sign-in" className="submit-button" defaultValue="Forgot Password" />
                         </div>
-                        <p style={{ textAlign: 'center', color: '#858585', fontSize: 15 }}>Sign in with social account</p>
+                        {/* <p style={{ textAlign: 'center', color: '#858585', fontSize: 15 }}>Sign in with social account</p>
                         <div className="signin-socail-links">
                             <img src="images/facebook.png" alt width="30px" />
                             <img src="images/footer3.png" alt width="30px" />
                             <img src="images/footer4.png" alt width="30px" />
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </section>
