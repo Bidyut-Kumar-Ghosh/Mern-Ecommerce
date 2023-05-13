@@ -12,7 +12,8 @@ const Register = () => {
     return (
         <Layout title="Register Ecommerce">
             <div className="register">
-                <h1>Register Page</h1>
+                <h1>REGISTER PAGE</h1>
+                <br />
                 <form>
                     <div className="mb-3">
                         <input
