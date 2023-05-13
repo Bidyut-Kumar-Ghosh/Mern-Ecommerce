@@ -72,8 +72,3 @@ const Register = () => {
 }
 
 export default Register
-
-// hello
-
-// hello
-//hiii
