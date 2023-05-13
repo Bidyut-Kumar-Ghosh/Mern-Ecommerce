@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout/Layout'
+import { toast } from 'react-toastify'
 
 const Register = () => {
     const [name, setName] = useState("")
@@ -8,13 +9,19 @@ const Register = () => {
     const [phone, setPhone] = useState("")
     const [address, setAddress] = useState("")
 
+    // form function
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(name, email, phone, password, address);
+        toast.success('Register Successfully')
+    }
 
     return (
         <Layout title="Register Ecommerce">
             <div className="register">
                 <h1>REGISTER PAGE</h1>
                 <br />
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <input
                             type="text"
