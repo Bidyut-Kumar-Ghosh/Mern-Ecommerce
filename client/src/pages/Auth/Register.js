@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../../components/Layout/Layout'
 import { toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -18,9 +19,9 @@ const Register = () => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, phone, password, address }
             );
-            if (res.data.succes) {
+            if (res && res.data.succes) {
                 toast.success(res.data.message)
-                navigate('/login')
+                navigate("/sasas");
             }
             else {
                 toast.error(res.data.message)
@@ -38,7 +39,7 @@ const Register = () => {
 
     return (
         <Layout title="Register Ecommerce">
-            <div className="register">
+            <div className="form-container">
                 <h1>REGISTER PAGE</h1>
                 <br />
                 <form onSubmit={handleSubmit}>
@@ -103,7 +104,7 @@ const Register = () => {
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                         <label className="form-check-label" htmlFor="exampleCheck1">Agree to Continue</label>
                     </div> */}
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Register</button>
                 </form>
 
             </div>
