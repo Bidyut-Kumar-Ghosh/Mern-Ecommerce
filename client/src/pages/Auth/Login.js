@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import Layout from '../../components/Layout/Layout'
 import { toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import { useAuth } from '../../context/auth';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-
+    const [auth, setAuth] = useAuth()
     const navigate = useNavigate();
+
+
+
     // form function
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,12 +22,19 @@ const Login = () => {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`,
                 { email, password }
             );
-            if (res.data && res.data.succes) {
-                toast.success(res.data && res.data.message)
+            if (res.data.success) {
+
+                toast.success(res.data.message)
+                setAuth({
+                    ...auth,
+                    user: res.data.user,
+                    token: res.data.token
+                })
                 navigate("/");
             }
             else {
                 toast.error(res.data.message)
+
             }
         } catch (error) {
             console.log(error)

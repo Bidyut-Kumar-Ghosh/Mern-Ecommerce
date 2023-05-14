@@ -11,7 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     // form function
     const handleSubmit = async (e) => {
@@ -19,12 +19,15 @@ const Register = () => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, phone, password, address }
             );
-            if (res && res.data.succes) {
+            if (res.data.success) {
+                console.log(res)
                 toast.success(res.data.message)
-                navigate("/sasas");
+                navigate("/login");
+
             }
             else {
                 toast.error(res.data.message)
+
             }
         } catch (error) {
             console.log(error)
@@ -49,7 +52,7 @@ const Register = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="form-control"
-                            id="exampleInputEmail1"
+                            id="exampleInputName"
                             placeholder='Enter Your Name'
                             required
                         />
@@ -60,7 +63,7 @@ const Register = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="form-control"
-                            id="exampleInputEmail1"
+                            id="exampleInputEmail"
                             placeholder='Email Address'
                             required
                         />
@@ -72,7 +75,7 @@ const Register = () => {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             className="form-control"
-                            id="exampleInputEmail1"
+                            id="exampleInputPhone"
                             placeholder='Phone'
                             pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{1}"
                             required
@@ -84,7 +87,7 @@ const Register = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"
-                            id="exampleInputPassword1"
+                            id="exampleInputPassword"
                             placeholder='Password'
                             required
                         />
@@ -95,7 +98,7 @@ const Register = () => {
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             className="form-control"
-                            id="exampleInputEmail1"
+                            id="exampleInputAddress"
                             placeholder='Address'
                             required
                         />
