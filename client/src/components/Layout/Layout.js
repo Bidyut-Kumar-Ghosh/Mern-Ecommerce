@@ -4,6 +4,12 @@ import Footer from './Footer'
 import { Helmet } from "react-helmet";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
+// import { ToastContainer, } from 'material-react-toastify';
+// import 'material-react-toastify/dist/ReactToastify.css';
+
+
 const Layout = ({ children, title, description, keywords, author }) => {
     return (
         <div>

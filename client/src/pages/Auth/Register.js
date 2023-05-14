@@ -5,6 +5,10 @@ import Layout from '../../components/Layout/Layout'
 import { toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 
+
+
+
+
 const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -20,7 +24,7 @@ const Register = () => {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, phone, password, address }
             );
             if (res.data.success) {
-                console.log(res)
+
                 toast.success(res.data.message)
                 navigate("/login");
 
