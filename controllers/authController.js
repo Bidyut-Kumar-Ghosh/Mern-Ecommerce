@@ -1,35 +1,35 @@
 import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "../helper/authHelper.js";
-import  JWT from "jsonwebtoken";
+import JWT from "jsonwebtoken";
 
-export const registerController = async(req,res) => {
+export const registerController = async (req, res) => {
     try {
-        const {name,email,password,phone,address} = req.body
-        
+        const { name, email, password, phone, address } = req.body
+
         //validation
-        if(!name){
-            return res.send({error:'Name is Required'})
+        if (!name) {
+            return res.send({ error: 'Name is Required' })
         }
-        if(!email){
-            return res.send({error:'Email is Required'})
+        if (!email) {
+            return res.send({ error: 'Email is Required' })
         }
-        if(!password){
-            return res.send({error:'Password is Required'})
+        if (!password) {
+            return res.send({ error: 'Password is Required' })
         }
-        if(!phone){
-            return res.send({error:'Phone Number is Required'})
+        if (!phone) {
+            return res.send({ error: 'Phone Number is Required' })
         }
-        if(!address){
-            return res.send({error:'Address is Required'})
+        if (!address) {
+            return res.send({ error: 'Address is Required' })
         }
 
         //check suer
-        const exisitingUser = await userModel.findOne({email})
+        const exisitingUser = await userModel.findOne({ email })
         //existing user
-        if(exisitingUser){
+        if (exisitingUser) {
             return res.status(200).send({
-                success:true,
-                message:'Already Register please Login',
+                success: false,
+                message: 'Already Register please Login',
             })
         }
         //register user
@@ -40,18 +40,18 @@ export const registerController = async(req,res) => {
             email,
             phone,
             address,
-            password:hashedPassword
+            password: hashedPassword
         }).save()
 
         res.status(201).send({
-            success:true,
-            message:'User Register Succesfully',
+            success: true,
+            message: 'User Register Succesfully',
             user,
         })
-    }catch (error) {
+    } catch (error) {
         console.log(error)
         res.status(500).send({
-            success:false,
+            success: false,
             message: 'error in registration',
             error
         })
@@ -59,58 +59,58 @@ export const registerController = async(req,res) => {
 };
 
 //post login 
-export const loginController = async (req,res) => {
-    try{
-        const {email,password} = req.body
+export const loginController = async (req, res) => {
+    try {
+        const { email, password } = req.body
         // validation
 
-        if(!email || !password){
+        if (!email || !password) {
             return res.status(404).send({
-                success:false,
-                message:'Invalid email or password'
+                success: false,
+                message: 'Invalid email or password'
             })
         }
         //check if user exist
-        const user = await userModel.findOne({email})
-        if(!user){
+        const user = await userModel.findOne({ email })
+        if (!user) {
             return res.status(404).send({
-                success:false,
+                success: false,
                 message: 'Email is not registered'
             })
         }
-        const match = await comparePassword(password,user.password)
-        if(!match){
+        const match = await comparePassword(password, user.password)
+        if (!match) {
             return res.status(200).send({
-                sucess:false,
-                message:'Invalid password'
+                sucess: false,
+                message: 'Invalid password'
             })
 
         }
         //token
-        const token = await JWT.sign({_id:user._id}, process.env.JWT_SECRET, {expiresIn:'7d'});
+        const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.status(200).send({
-            success:true,
-            message:'login successfuly',
-            user:{
+            success: true,
+            message: 'login successfuly',
+            user: {
                 name: user.name,
                 email: user.email,
                 phone: user.phone,
                 address: user.address,
             },
-            token, 
+            token,
         });
     } catch (error) {
         console.log(error)
         res.status(500).send({
-            success:false,
-            message:'Error in login',
+            success: false,
+            message: 'Error in login',
             error
         });
     }
 };
 
 //test controller
-export const testController = (req,res) => {
+export const testController = (req, res) => {
     res.send('Protected Route');
 }
 
