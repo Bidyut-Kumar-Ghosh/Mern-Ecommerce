@@ -107,10 +107,10 @@ const Register = () => {
                             required
                         />
                     </div>
-                    {/* <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                    <div className="mb-3 form-check">
+                        <input type="checkbox" className="form-check-input" id="exampleCheck1" required />
                         <label className="form-check-label" htmlFor="exampleCheck1">Agree to Continue</label>
-                    </div> */}
+                    </div>
                     <button type="submit" className="btn btn-primary">Register</button>
                 </form>
 
