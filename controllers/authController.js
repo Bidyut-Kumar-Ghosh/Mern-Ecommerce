@@ -28,7 +28,7 @@ export const registerController = async (req, res) => {
         //existing user
         if (exisitingUser) {
             return res.status(200).send({
-                success: false,
+                success: true,
                 message: 'Already Register please Login',
             })
         }
