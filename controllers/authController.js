@@ -109,6 +109,48 @@ export const loginController = async (req, res) => {
     }
 };
 
+export const forgotPasswordController = async (req, res) => {
+    try {
+        const { email, answer, newPassword } = req.body
+        if (!email) {
+            res.status(400).send({ message: 'Email is Required' })
+        }
+        if (!answer) {
+            res.status(400).send({ message: 'Answer is Required' })
+        }
+        if (!newPassword) {
+            res.status(400).send({ message: 'New Password is Required' })
+        }
+        //Checking 
+        const user = await userModel.findOne({ email, answer })
+
+        //validation
+        if (!user) {
+            return res.status(400).send({
+                success: false,
+                message: 'Wrong Email Or Answer'
+            })
+        }
+
+        const hashed = await hashPassword(newPassword)
+        await userModel.findByIdAndUpdate(user._id, { password: hashed })
+        res.status(200).send({
+            success: true,
+            message: 'Password Changed Successfully'
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: 'Something went wrong'
+        })
+    }
+}
+
+
+
+
 //test controller
 export const testController = (req, res) => {
     res.send('Protected Route');

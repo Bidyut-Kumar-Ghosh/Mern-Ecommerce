@@ -15,13 +15,14 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
 
     // form function
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, phone, password, address }
+            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, phone, password, address, answer }
             );
             if (res.data.success) {
 
@@ -107,10 +108,21 @@ const Register = () => {
                             required
                         />
                     </div>
-                    <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" required />
-                        <label className="form-check-label" htmlFor="exampleCheck1">Agree to Continue</label>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            value={answer}
+                            onChange={(e) => setAddress(e.target.value)}
+                            className="form-control"
+                            id="exampleInputAddress"
+                            placeholder='Your Best Friend Name'
+                            required
+                        />
                     </div>
+                    {/* <div className="mb-2 form-check">
+                        <input type="checkbox" className="form-check-input" id="exampleCheck" required />
+                        <label className="form-check-label" htmlFor="exampleCheck1">Agree to Continue</label>
+                    </div> */}
                     <button type="submit" className="btn btn-primary">Register</button>
                 </form>
 
