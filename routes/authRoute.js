@@ -18,13 +18,13 @@ router.post('/forgot-password', forgotPasswordController)
 //test
 router.get("/test", requireSignIn, isAdmin, testController);
 
-//protected route
+//protected User route Auth
 router.get('/user-auth', requireSignIn, (req, res) => {
     res.status(200).send({ ok: true });
 });
 
 //protected Admin route Auth
-router.get('/admin-auth', requireSignIn, isAdmin(req, res) => {
+router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
     res.status(200).send({ ok: true });
 });
 
