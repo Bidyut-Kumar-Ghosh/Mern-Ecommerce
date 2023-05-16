@@ -18,8 +18,13 @@ function App() {
         <Route path='/' element={<HomePage />} />
 
         <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="user" element={<Dashboard />} />
+        </Route>
+
+        <Route path="/dashboard" element={<Admin />}>
           <Route path="" element={<Dashboard />} />
         </Route>
+
         <Route path='/register' element={<Register />} />
         <Route path='/forgot-password' element={<ForgotPasssword />} />
         <Route path='/login' element={<Login />} />
