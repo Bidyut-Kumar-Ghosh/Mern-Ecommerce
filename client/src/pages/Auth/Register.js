@@ -112,7 +112,7 @@ const Register = () => {
                         <input
                             type="text"
                             value={answer}
-                            onChange={(e) => setAddress(e.target.value)}
+                            onChange={(e) => setAnswer(e.target.value)}
                             className="form-control"
                             id="exampleInputAddress"
                             placeholder='Your Best Friend Name'
