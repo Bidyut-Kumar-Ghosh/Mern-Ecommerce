@@ -4,7 +4,7 @@ import Layout from '../../components/Layout/Layout'
 import { toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import { useAuth } from '../../context/auth';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Login = () => {
 
@@ -12,6 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [auth, setAuth] = useAuth()
     const navigate = useNavigate();
+    const location = useLocation();
 
 
 
@@ -27,12 +28,13 @@ const Login = () => {
                 toast.success(res.data.message)
                 setAuth({
                     ...auth,
+                    //Ayuth
                     user: res.data.user,
                     token: res.data.token
                 })
                 localStorage.setItem('auth', JSON.stringify(res.data))
                 console.log(res)
-                navigate("/");
+                navigate(location.state || "/");
             }
             else {
                 toast.error(res.data.message)
