@@ -39,7 +39,7 @@ export const createProductController = async (req, res) => {
         })
     } catch (error) {
         res.status(500).send({
-            succes: false,
+            success: false,
             error,
             message: "Error in creating Product"
         })
@@ -63,7 +63,7 @@ export const getProductController = async (req, res) => {
                 createdAt: -1
             })
         res.status(200).send({
-            succes: true,
+            success: true,
             totalCount: products.length,
             message: "Products List",
             products,
@@ -91,7 +91,7 @@ export const getSingleProductController = async (req, res) => {
     try {
         const product = await productModel.findOne({ slug: req.params.slug }).select("-photo").populate("category")
         res.status(200).send({
-            succes: true,
+            success: true,
             message: "Single Product Fetched",
             product
 
@@ -99,11 +99,34 @@ export const getSingleProductController = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500)({
-            succes: false,
+            success: false,
             message: 'Error While Getting Single Product',
             error,
         })
 
 
+    }
+}
+
+
+
+//photo
+
+export const productPhotoController = async (req, res) => {
+    try {
+        const product = await productModel.findById(req.params.pid).select("photo")
+        if (product.photo.data) {
+            res.set('Content-type', product.photo.contentType)
+            return res.status(200).send(product.photo.data)
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: "Error While Getting Product Photo",
+            error
+
+        })
     }
 }
