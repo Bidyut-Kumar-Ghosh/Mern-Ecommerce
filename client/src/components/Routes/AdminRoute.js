@@ -13,6 +13,7 @@ export default function AdminRoute() {
             const res = await axios.get("/api/v1/auth/admin-auth");
             if (res.data.ok) {
                 setOk(true);
+
             } else {
                 setOk(false);
             }

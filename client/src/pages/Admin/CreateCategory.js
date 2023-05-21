@@ -74,6 +74,34 @@ const CreateCategory = () => {
 
         }
     }
+
+    // Delete category
+    const handleDelete = async (pID) => {
+
+        try {
+            const { data } = await axios.delete(`/api/v1/category/delete-category/${pID}`)
+            if (data.success) {
+                alert(`${pID} is Deleted`);
+                getAllCategory();
+            } else {
+                console.log(pID)
+                alert(data.message)
+            }
+            console.log(pID)
+        } catch (error) {
+            console.log(error)
+            Alert('Something Went Wrong')
+
+        }
+    }
+
+
+
+
+
+
+
+
     return (
         <Layout title={"Dashboard - All Users"}>
             <div className="container-fluid m-3 p-3">
@@ -106,7 +134,7 @@ const CreateCategory = () => {
                                                         setSelected(c)
                                                     }}
                                                     >Edit</button>
-                                                    <button className='btn btn-danger ms-2'>Delete</button>
+                                                    <button className='btn btn-danger ms-2' onClick={() => { handleDelete(c._id) }}>Delete</button>
                                                 </td>
                                             </tr >
                                         </>
