@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import AdminMenu from '../../components/Layout/AdminMenu'
-import toast from "react-hot-toast"
+// import toast from "react-hot-toast"
 import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
+import { Alert, Modal } from "antd"
 const CreateCategory = () => {
     const [categories, setCategories] = useState([])
     const [name, setName] = useState("")
+    const [visible, setVisible] = useState(false);
+    const [selected, setSelected] = useState(null)
+    const [updatedName, setUpdatedName] = useState("")
 
     //handle form
     const handleSubmit = async (e) => {
@@ -45,6 +49,31 @@ const CreateCategory = () => {
     useEffect(() => {
         getAllCategory();
     }, []);
+
+
+
+    // Update category
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+        try {
+            const { data } = await axios.put(`/api/v1/category/update-category/${selected._id}`, { name: updatedName })
+            if (data.success) {
+                alert(`${updatedName} is updated`);
+                setSelected(null);
+                setUpdatedName("");
+                setVisible(false);
+                getAllCategory();
+            } else {
+                console.log(e)
+                alert(data.message)
+            }
+            console.log(e)
+        } catch (error) {
+            console.log(error)
+            Alert('Something Went Wrong')
+
+        }
+    }
     return (
         <Layout title={"Dashboard - All Users"}>
             <div className="container-fluid m-3 p-3">
@@ -71,16 +100,24 @@ const CreateCategory = () => {
                                             <tr>
                                                 <td key={c._id}>{c.name}</td>
                                                 <td>
-                                                    <button className='btn btn-primary ms-2'>Edit</button>
+                                                    <button className='btn btn-primary ms-2' onClick={() => {
+                                                        setVisible(true);
+                                                        setUpdatedName(c.name)
+                                                        setSelected(c)
+                                                    }}
+                                                    >Edit</button>
                                                     <button className='btn btn-danger ms-2'>Delete</button>
                                                 </td>
-                                            </tr>
+                                            </tr >
                                         </>
 
                                     ))}
                                 </tbody>
                             </table>
                         </div>
+                        <Modal onCancel={() => setVisible(false)} footer={null} visible={visible}>
+                            <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate} />
+                        </Modal>
                     </div>
                 </div>
             </div>
