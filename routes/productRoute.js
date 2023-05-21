@@ -39,6 +39,6 @@ router.get('/product-photo/:pid', productPhotoController)
 
 // delete product
 
-router.delete('/product', deleteProductController)
+router.delete('/product/:pid', deleteProductController)
 
 export default router;
