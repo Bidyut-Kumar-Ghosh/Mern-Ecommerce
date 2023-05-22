@@ -38,7 +38,7 @@ const CreateCategory = () => {
             const { data } = await axios.get('/api/v1/category/get-category')
             if (data.success) {
                 setCategories(data?.category)
-                toast.success(`Get all ${data.category}`)
+                // toast.success(`Get all ${data.category}`)
             }
         } catch (error) {
             // console.log(error)
@@ -59,7 +59,7 @@ const CreateCategory = () => {
         try {
             const { data } = await axios.put(`/api/v1/category/update-category/${selected._id}`, { name: updatedName })
             if (data.success) {
-                alert(`${updatedName} is updated`);
+                toast.success(`${updatedName} is updated`);
                 setSelected(null);
                 setUpdatedName("");
                 setVisible(false);

@@ -6,11 +6,15 @@ import { useAuth } from '../context/auth'
 
 
 const HomePage = () => {
-    const [auth,] = useAuth()
+    const [auth, setAuth] = useAuth()
     return (
-        <Layout>
-            <h1>😃 HomePage 😃</h1>
-            <pre> {JSON.stringify(auth, null, 4)}</pre>
+        <Layout title={"All Products - Best Offers"}>
+            <div className='row'>
+                <div className='col-md-3'>
+                    <h6 className='text-center'>Filter By Category</h6>
+                </div>
+            </div>
+
         </Layout>
     )
 }
