@@ -91,7 +91,7 @@ const UpdateProduct = () => {
         try {
             let answer = window.prompt('Are You Sure Want To Delete This Product')
             if (!answer) return;
-            const { data } = await axios.delete(`/api/v1/product/${id}`)
+            const { data } = await axios.delete(`/api/v1/product/delete-product/${id}`)
             if (data?.success) {
                 toast.error(data?.message)
             } else {
