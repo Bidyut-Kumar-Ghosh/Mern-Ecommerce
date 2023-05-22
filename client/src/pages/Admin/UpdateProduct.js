@@ -89,22 +89,18 @@ const UpdateProduct = () => {
     //delete a product
     const handleDelete = async () => {
         try {
-            let answer = window.prompt('Are You Sure Want To Delete This Product')
+            let answer = window.prompt("Are You Sure want to delete this product ? ");
             if (!answer) return;
-            const { data } = await axios.delete(`/api/v1/product/delete-product/${id}`)
-            if (data?.success) {
-                toast.error(data?.message)
-            } else {
-                toast.success('Product Deleted Successfully')
-                navigate('/dashboard/admin/products')
-            }
-
+            const { data } = await axios.delete(
+                `/api/v1/product/delete-product/${id}`
+            );
+            toast.success("Product DEleted Succfully");
+            navigate("/dashboard/admin/products");
         } catch (error) {
-            console.log(error)
-            toast.error("Something Error Was Came")
-
+            console.log(error);
+            toast.error("Something went wrong");
         }
-    }
+    };
     return (
         <Layout title={"Dashboard - Create Product"}>
             <div className="container-fluid m-3 p-3">
