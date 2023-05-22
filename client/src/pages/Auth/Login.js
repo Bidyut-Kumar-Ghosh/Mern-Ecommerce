@@ -23,7 +23,7 @@ const Login = () => {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`,
                 { email, password }
             );
-            if (res.data.success) {
+            if (res?.data.success) {
 
                 toast.success(res.data.message)
                 setAuth({
@@ -35,6 +35,7 @@ const Login = () => {
                 localStorage.setItem('auth', JSON.stringify(res.data))
                 console.log(res)
                 navigate(location.state || "/");
+                toast.success("Sucessfull Login")
             }
             else {
                 toast.error(res.data.message)

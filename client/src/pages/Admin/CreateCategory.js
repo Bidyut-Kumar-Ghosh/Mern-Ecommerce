@@ -4,7 +4,8 @@ import AdminMenu from '../../components/Layout/AdminMenu'
 // import toast from "react-hot-toast"
 import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
-import { Alert, Modal } from "antd"
+import { Modal } from "antd"
+import { toast } from 'react-toastify';
 const CreateCategory = () => {
     const [categories, setCategories] = useState([])
     const [name, setName] = useState("")
@@ -18,14 +19,14 @@ const CreateCategory = () => {
         try {
             const { data } = await axios.post('/api/v1/category/create-category', { name })
             if (data.success) {
-                alert(`${name} is created`)
+                toast.success(`${name} is created`)
 
             } else {
-                alert(data.message)
+                toast.success(data.message)
             }
         } catch (error) {
             console.log(error)
-            alert('Something went wrong in input form')
+            toast.success('Something went wrong in input form')
 
         }
     }
@@ -35,13 +36,13 @@ const CreateCategory = () => {
     const getAllCategory = async () => {
         try {
             const { data } = await axios.get('/api/v1/category/get-category')
-            if (data?.success) {
+            if (data.success) {
                 setCategories(data?.category)
-                // alert(`Get all ${data.category}`)
+                toast.success(`Get all ${data.category}`)
             }
         } catch (error) {
-            console.log(error)
-            alert('something went wrong')
+            // console.log(error)
+            toast.error('Something Went Wrong')
 
         }
     }
@@ -65,12 +66,12 @@ const CreateCategory = () => {
                 getAllCategory();
             } else {
                 console.log(e)
-                alert(data.message)
+                toast.success(data.message)
             }
             console.log(e)
         } catch (error) {
             console.log(error)
-            Alert('Something Went Wrong')
+            toast.warn('Something Went Wrong')
 
         }
     }
@@ -81,16 +82,16 @@ const CreateCategory = () => {
         try {
             const { data } = await axios.delete(`/api/v1/category/delete-category/${pID}`)
             if (data.success) {
-                alert(`${pID} is Deleted`);
+                toast.success(`${pID} is Deleted`);
                 getAllCategory();
             } else {
                 console.log(pID)
-                alert(data.message)
+                toast.warn(data.message)
             }
             console.log(pID)
         } catch (error) {
             console.log(error)
-            Alert('Something Went Wrong')
+            toast.error('Something Went Wrong')
 
         }
     }
