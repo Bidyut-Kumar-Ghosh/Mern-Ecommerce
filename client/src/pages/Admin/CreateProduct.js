@@ -9,7 +9,7 @@ const { Option } = Select
 
 
 const CreateProduct = () => {
-    const navigate = useNavigate
+    const navigate = useNavigate();
     const [categories, setCategories] = useState([])
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -51,13 +51,12 @@ const CreateProduct = () => {
             productData.append('photo', photo)
             const { data } = await axios.post('/api/v1/product/create-product', productData);
             if (data?.success) {
-
-                toast.success("Product created successfully")
-                navigate('/dashboard/admin/products')
-            } else {
                 toast.success(data?.message)
-                // toast.success("Product created successfully")
-                // navigate('/')
+
+            } else {
+                toast.success("Product created successfully")
+                navigate(`/dashboard/admin/products`)
+
             }
 
         } catch (error) {

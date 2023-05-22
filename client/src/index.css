@@ -307,3 +307,12 @@ form input[type="submit"]:hover{
     flex-direction: row;
   }
 }
+
+
+/* product link */
+
+.product-link
+{
+  text-decoration: none !important;
+  color: black !important;
+}
