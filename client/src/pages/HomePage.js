@@ -13,6 +13,9 @@ const HomePage = () => {
     const [categories, setCategories] = useState([]);
     const [checked, setChecked] = useState([]);
     const [radio, setRadio] = useState([]);
+    const [page,] = useState([1]);
+
+
 
 
 
@@ -33,19 +36,24 @@ const HomePage = () => {
 
     useEffect(() => {
         getAllCategory();
+
     }, []);
     //get products
     const getAllProducts = async () => {
         try {
-            const { data } = await axios.get("/api/v1/product/get-product")
+
+            const { data } = await axios.get(`/api/v1/product/product-list/${page}`)
+
             setProducts(data.products);
 
         } catch (error) {
+
             console.log(error)
 
 
         }
     }
+
 
     // filter by cat
     const handleFilter = (value, id) => {
@@ -59,7 +67,7 @@ const HomePage = () => {
     };
     useEffect(() => {
         if (!checked.length || !radio.length) getAllProducts();
-    }, [checked.length, radio.length]);
+    }, [checked.length, getAllProducts, radio.length]);
 
     useEffect(() => {
         if (checked.length || radio.length) filterProduct();
@@ -78,7 +86,7 @@ const HomePage = () => {
         }
     };
     return (
-        <Layout title={"ALl Products - Best offers "}>
+        <Layout title={"All Products - Best offers "}>
             <div className="container-fluid row mt-3">
                 <div className="col-md-2">
                     <h4 className="text-center">Filter By Category</h4>
@@ -129,24 +137,12 @@ const HomePage = () => {
                                     </p>
                                     <p className="card-text"> $ {p.price}</p>
                                     <button class="btn btn-primary ms-1">More Details</button>
-                                    <button class="btn btn-danger ms-1">ADD TO CART</button>
+                                    <button class="btn btn-danger ms-1">Add to Cart</button>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    {/* <div className="m-2 p-3">
-                        {products && products.length < total && (
-                            <button
-                                className="btn btn-warning"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setPage(page + 1);
-                                }}
-                            >
-                                {loading ? "Loading ..." : "Loadmore"}
-                            </button>
-                        )}
-                    </div> */}
+
                 </div>
             </div>
         </Layout>
