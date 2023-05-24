@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Price";
+
+
 const HomePage = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -157,7 +159,7 @@ const HomePage = () => {
                                     >
                                         More Details
                                     </button>
-                                    <button className="btn btn-secondary ms-1">
+                                    <button className="btn btn-danger ms-1">
                                         ADD TO CART
                                     </button>
                                 </div>
