@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Layout from "../components/Layout/Layout";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react'
+import Layout from '../components/Layout/Layout'
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+
+
+
+
 const CategoryProduct = () => {
-    const params = useParams();
-    const navigate = useNavigate();
+    const params = useParams()
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (params?.slug) getPrductsByCat();
-    }, [params?.slug]);
-    const getPrductsByCat = async () => {
+        if (params?.slug) getProductByCat()
+    },)
+    const getProductByCat = async () => {
         try {
             const { data } = await axios.get(
                 `/api/v1/product/product-category/${params.slug}`
@@ -19,10 +23,9 @@ const CategoryProduct = () => {
             setProducts(data?.products);
             setCategory(data?.category);
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
-    };
-
+    }
     return (
         <Layout>
             <div className="container mt-3">
@@ -78,7 +81,7 @@ const CategoryProduct = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+    )
+}
 
-export default CategoryProduct;
+export default CategoryProduct

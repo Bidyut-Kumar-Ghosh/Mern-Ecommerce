@@ -1,5 +1,6 @@
 import slugify from "slugify"
 import productModel from "../models/productModel.js"
+import categoryModel from "../models/categoryModel.js"
 import fs from 'fs'
 
 
@@ -320,7 +321,7 @@ export const relatedProductController = async (req, res) => {
     }
 };
 
-// get prdocyst by catgory
+// get prduct by catgory
 export const productCategoryController = async (req, res) => {
     try {
         const category = await categoryModel.findOne({ slug: req.params.slug });
