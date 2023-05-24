@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import Layout from '../../components/Layout/Layout'
-import { toast } from 'react-toastify'
-import "react-toastify/dist/ReactToastify.css"
-
-
-
-
-
+import React, { useState } from "react";
+import Layout from "./../../components/Layout/Layout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "../../style/AuthStyle.css";
 const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -20,46 +15,43 @@ const Register = () => {
 
     // form function
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, phone, password, address, answer }
-            );
-            if (res.data.success) {
-
-                toast.success(res.data.message)
+            const res = await axios.post("/api/v1/auth/register", {
+                name,
+                email,
+                password,
+                phone,
+                address,
+                answer,
+            });
+            if (res && res.data.success) {
+                toast.success(res.data && res.data.message);
                 navigate("/login");
-
-            }
-            else {
-                toast.error(res.data.message)
-
+            } else {
+                toast.error(res.data.message);
             }
         } catch (error) {
-            console.log(error)
-            toast.error('Something went wrong')
+            console.log(error);
+            toast.error("Something went wrong");
         }
-
-
-
-        // console.log(name, email, phone, password, address);
-        // toast.success('Register Successfully')
-    }
+    };
 
     return (
-        <Layout title="Register Ecommerce">
-            <div className="form-container">
-                <h1>REGISTER PAGE</h1>
-                <br />
+        <Layout title="Register - Ecommer App">
+            <div className="form-container ">
                 <form onSubmit={handleSubmit}>
+                    <h4 className="title">REGISTER FORM</h4>
                     <div className="mb-3">
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="form-control"
-                            id="exampleInputName"
-                            placeholder='Enter Your Name'
+                            id="exampleInputEmail1"
+                            placeholder="Enter Your Name"
                             required
+                            autoFocus
                         />
                     </div>
                     <div className="mb-3">
@@ -68,21 +60,8 @@ const Register = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="form-control"
-                            id="exampleInputEmail"
-                            placeholder='Email Address'
-                            required
-                        />
-                    </div>
-                    <div className="mb-3">
-
-                        <input
-                            type="tel"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            className="form-control"
-                            id="exampleInputPhone"
-                            placeholder='Phone'
-                            pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{1}"
+                            id="exampleInputEmail1"
+                            placeholder="Enter Your Email "
                             required
                         />
                     </div>
@@ -92,8 +71,19 @@ const Register = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"
-                            id="exampleInputPassword"
-                            placeholder='Password'
+                            id="exampleInputPassword1"
+                            placeholder="Enter Your Password"
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="Enter Your Phone"
                             required
                         />
                     </div>
@@ -103,8 +93,8 @@ const Register = () => {
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             className="form-control"
-                            id="exampleInputAddress"
-                            placeholder='Address'
+                            id="exampleInputEmail1"
+                            placeholder="Enter Your Address"
                             required
                         />
                     </div>
@@ -114,21 +104,18 @@ const Register = () => {
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             className="form-control"
-                            id="exampleInputAddress"
-                            placeholder='Your Best Friend Name'
+                            id="exampleInputEmail1"
+                            placeholder="What is Your Favorite sports"
                             required
                         />
                     </div>
-                    {/* <div className="mb-2 form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck" required />
-                        <label className="form-check-label" htmlFor="exampleCheck1">Agree to Continue</label>
-                    </div> */}
-                    <button type="submit" className="btn btn-primary">Register</button>
+                    <button type="submit" className="btn btn-primary">
+                        REGISTER
+                    </button>
                 </form>
-
             </div>
         </Layout>
-    )
-}
+    );
+};
 
-export default Register
+export default Register;
